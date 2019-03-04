@@ -1,6 +1,7 @@
 package it.sephiroth.android.library.bottomnavigation
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.ViewGroup
 
 /**
@@ -14,6 +15,10 @@ abstract class ItemsLayoutContainer(context: Context) : ViewGroup(context) {
     abstract fun setSelectedIndex(index: Int, animate: Boolean)
 
     abstract fun populate(menu: MenuParser.Menu)
+
+    abstract fun setIcon(index: Int,newIcon : Drawable)
+
+    abstract fun setTitle(index: Int,newTitle : String)
 
     var itemClickListener: OnItemClickListener? = null
 

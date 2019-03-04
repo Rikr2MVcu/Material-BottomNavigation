@@ -111,6 +111,10 @@ internal abstract class BottomNavigationItemViewAbstract(parent: BottomNavigatio
         }
     }
 
+    abstract fun setItemIcon(newIcon : Drawable)
+
+    abstract fun setItemTitle(newTitle : String)
+
     companion object {
         const val ALPHA_MAX = 255f
     }

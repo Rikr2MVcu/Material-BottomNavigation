@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.view.animation.DecelerateInterpolator
 import androidx.core.view.ViewCompat
 import it.sephiroth.android.library.bottonnavigation.R
@@ -171,6 +172,22 @@ internal class BottomNavigationFixedItemView(parent: BottomNavigation, expanded:
 
         canvas.restore()
 
+    }
+
+    override fun setItemIcon(newIcon : Drawable) {
+        this.icon = newIcon.mutate()
+        val color =
+                if (isExpanded) if (isEnabled) colorActive else colorDisabled else if (isEnabled) colorInactive else colorDisabled
+        this.icon!!.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+        this.icon!!.alpha = Color.alpha(color)
+        icon?.setBounds(centerX, centerY, centerX + iconSize, centerY + iconSize)
+        postInvalidate()
+    }
+
+    override fun setItemTitle(newTitle : String) {
+        this.item!!.title = newTitle
+        measureText()
+        postInvalidate()
     }
 
     companion object {

@@ -2,6 +2,7 @@ package it.sephiroth.android.library.bottomnavigation
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
@@ -133,6 +134,22 @@ class ShiftingLayout(context: Context) : ItemsLayoutContainer(context) {
             populateInternal(menu)
         } else {
             this.menu = menu
+        }
+    }
+
+    override fun setIcon(index: Int,newIcon : Drawable) {
+        Timber.i("setIcon: $index , Drawable")
+        if (childCount > index) {
+            val bottomNavigationItem = getChildAt(index) as BottomNavigationShiftingItemView
+            bottomNavigationItem.setItemIcon(newIcon)
+        }
+    }
+
+    override fun setTitle(index: Int,newTitle : String) {
+        Timber.i("setTitle: $index , $newTitle")
+        if (childCount > index) {
+            val bottomNavigationItem = getChildAt(index) as BottomNavigationShiftingItemView
+            bottomNavigationItem.setItemTitle(newTitle)
         }
     }
 

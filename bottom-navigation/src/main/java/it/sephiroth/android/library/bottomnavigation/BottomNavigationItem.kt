@@ -9,7 +9,7 @@ import androidx.appcompat.content.res.AppCompatResources
  *
  * The MIT License
  */
-class BottomNavigationItem(val id: Int, private val iconResource: Int, val title: String) {
+class BottomNavigationItem(val id: Int, private val iconResource: Int, var title: String) {
     var color: Int = 0
     var isEnabled: Boolean = true
 

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.readystatesoftware.systembartint.SystemBarTintManager.SystemBarConfig;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatEditText;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -179,6 +181,9 @@ public class EnableDisableActivityFragment extends Fragment implements BottomNav
         final CompoundButton switch1;
         final CompoundButton switch2;
         final CompoundButton animate;
+        final AppCompatEditText titleText;
+        final AppCompatButton titleButton;
+        final AppCompatButton iconButton;
 
         public TwoLinesViewHolder(final View itemView) {
             super(itemView);
@@ -187,6 +192,9 @@ public class EnableDisableActivityFragment extends Fragment implements BottomNav
             switch1 = (CompoundButton) itemView.findViewById(android.R.id.button1);
             switch2 = (CompoundButton) itemView.findViewById(android.R.id.button2);
             animate = (CompoundButton) itemView.findViewById(android.R.id.button3);
+            titleText = (AppCompatEditText) itemView.findViewById(R.id.titleText);
+            titleButton = (AppCompatButton) itemView.findViewById(R.id.titleButton);
+            iconButton = (AppCompatButton) itemView.findViewById(R.id.iconButton);
         }
     }
 
@@ -222,7 +230,8 @@ public class EnableDisableActivityFragment extends Fragment implements BottomNav
             holder.switch1.setOnCheckedChangeListener(null);
             holder.switch2.setOnCheckedChangeListener(null);
 
-            holder.title.setText(navigation.getMenuItemTitle(position) + " (index: " + position + ")");
+            String title = navigation.getMenuItemTitle(position);
+            holder.title.setText( title + " (index: " + position + ")");
             holder.switch1.setChecked(navigation.getMenuItemEnabled(position));
             holder.switch2.setChecked(navigation.getSelectedIndex() == position);
 
@@ -246,6 +255,11 @@ public class EnableDisableActivityFragment extends Fragment implements BottomNav
                 }
             });
 
+            holder.titleText.setText(title);
+            holder.titleButton.setOnClickListener(view ->
+                    navigation.setMenuItemTitle(holder.getAdapterPosition(),holder.titleText.getText().toString()));
+            holder.iconButton.setOnClickListener(view ->
+                    navigation.setMenuItemIcon(holder.getAdapterPosition(),getResources().getDrawable(R.drawable.ic_favorite_white_24dp)));
         }
 
         @Override

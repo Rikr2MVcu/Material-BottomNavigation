@@ -8,6 +8,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.view.animation.DecelerateInterpolator
 import it.sephiroth.android.library.bottonnavigation.R
 import timber.log.Timber
@@ -128,6 +129,14 @@ internal class BottomNavigationShiftingItemView(parent: BottomNavigation, expand
         this.textWidth = textPaint.measureText(item!!.title)
     }
 
+    private fun measureTextForDrawing() {
+        this.textWidth = textPaint.measureText(item!!.title)
+        val w = right - left
+        val h = bottom - top
+        this.textY = h - paddingBottomActive
+        this.textX = (w - textWidth) / 2
+    }
+
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
 
@@ -167,6 +176,28 @@ internal class BottomNavigationShiftingItemView(parent: BottomNavigation, expand
                 textY.toFloat(),
                 textPaint)
         drawBadge(canvas)
+    }
+
+    override fun setItemIcon(newIcon: Drawable) {
+        this.icon = newIcon.mutate()
+        icon?.setBounds(0, 0, iconSize, iconSize)
+        icon?.setColorFilter(
+                if (isExpanded) if (isEnabled) colorActive else colorDisabled else if (isEnabled) colorInactive else colorDisabled, PorterDuff.Mode.SRC_ATOP)
+
+        icon?.alpha = (if (isExpanded)
+            (if (isEnabled) alphaActive else alphaDisabled) * BottomNavigationItemViewAbstract.ALPHA_MAX
+        else
+            (if (isEnabled) alphaInactive else alphaDisabled) * BottomNavigationItemViewAbstract.ALPHA_MAX).toInt()
+        val w = right - left
+        val centerX = (w - iconSize) / 2
+        icon?.setBounds(centerX, centerY, centerX + iconSize, centerY + iconSize)
+        postInvalidate()
+    }
+
+    override fun setItemTitle(newTitle: String) {
+        this.item!!.title = newTitle
+        measureTextForDrawing()
+        postInvalidate()
     }
 
     fun getCenterY(): Int {

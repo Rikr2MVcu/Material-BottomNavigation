@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.view.animation.DecelerateInterpolator
 import androidx.core.view.ViewCompat
 import it.sephiroth.android.library.bottonnavigation.R
@@ -85,5 +86,25 @@ internal class BottomNavigationTabletItemView(parent: BottomNavigation, expanded
         super.onDraw(canvas)
         icon?.draw(canvas)
         drawBadge(canvas)
+    }
+
+    override fun setItemIcon(newIcon: Drawable) {
+        this.icon = newIcon.mutate()
+        this.icon?.setColorFilter(
+                if (isExpanded) if (isEnabled) colorActive else colorDisabled else if (isEnabled) colorInactive else colorDisabled,
+                PorterDuff.Mode.SRC_ATOP
+        )
+        this.icon?.alpha =
+                Color.alpha(if (isExpanded) if (isEnabled) colorActive else colorDisabled else if (isEnabled) colorInactive else colorDisabled)
+        val w = right - left
+        val h = bottom - top
+        val centerX = (w - iconSize) / 2
+        val centerY = (h - iconSize) / 2
+        icon?.setBounds(centerX, centerY, centerX + iconSize, centerY + iconSize)
+        postInvalidate()
+    }
+
+    override fun setItemTitle(newTitle: String) {
+        this.item!!.title = newTitle
     }
 }

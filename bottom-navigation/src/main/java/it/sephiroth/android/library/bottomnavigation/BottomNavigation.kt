@@ -30,6 +30,7 @@ import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.os.Bundle
@@ -48,6 +49,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.IdRes
 import androidx.annotation.MenuRes
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -421,6 +423,25 @@ class BottomNavigation : FrameLayout, OnItemClickListener {
             menu!!.getItemAt(index).title
         } else null
         // menu has not been parsed yet
+    }
+
+    fun setMenuItemIcon(position: Int, resourceId: Int) {
+        log(INFO, "setMenuItemIcon($position, $resourceId)", position, resourceId)
+        setMenuItemIcon(position, AppCompatResources.getDrawable(context,resourceId)!!)
+    }
+
+    fun setMenuItemIcon(position: Int, newIcon: Drawable) {
+        log(INFO, "setMenuItemIcon($position, Drawable)", position)
+        if ( null != itemsContainer) {
+            itemsContainer!!.setIcon(position,newIcon)
+        }
+    }
+
+    fun setMenuItemTitle(position: Int, newIcon: String) {
+        log(INFO, "setMenuItemTitle($position, $newIcon)", position,newIcon)
+        if ( null != itemsContainer) {
+            itemsContainer!!.setTitle(position,newIcon)
+        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

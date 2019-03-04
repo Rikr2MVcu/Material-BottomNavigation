@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="3dp"
     android:layout_marginLeft="2dp"
-    android:layout_marginRight="2dp"
     android:layout_marginTop="3dp"
+    android:layout_marginRight="2dp"
+    android:layout_marginBottom="3dp"
     android:padding="8dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="2dp"
@@ -22,8 +22,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="8dp"
-        android:paddingBottom="8dp"
         android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         tools:ignore="RtlHardcoded">
 
         <TextView
@@ -41,8 +41,8 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_below="@android:id/title"
-            android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@android:color/darker_gray" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
@@ -62,23 +62,81 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@android:id/button1"
             android:layout_alignBottom="@android:id/button1"
+            android:layout_marginLeft="8dp"
             android:layout_toRightOf="@android:id/button1"
             android:text="Selected"
-            android:layout_marginLeft="8dp"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/colorButton" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
-            android:checked="true"
             android:id="@android:id/button3"
             style="@style/Widget.AppCompat.CompoundButton.CheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@android:id/button2"
             android:layout_alignBottom="@android:id/button2"
-            android:layout_toRightOf="@android:id/button2"
-            android:text="Animate"
             android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@android:id/button2"
+            android:checked="true"
+            android:text="Animate"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorButton" />
+
+        <View
+            android:id="@+id/spacer1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@android:id/button1"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/darker_gray" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/titleText"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spacer1"
+            android:layout_alignStart="@android:id/button1"
+            android:layout_alignLeft="@android:id/button1"
+            android:layout_alignEnd="@android:id/button1"
+            android:layout_alignRight="@android:id/button1"
+            android:layout_alignBottom="@+id/titleButton"
+            android:hint="Title"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorButton" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/titleButton"
+            style="@style/Widget.MaterialComponents.ActionBar.Surface"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spacer1"
+            android:layout_alignStart="@android:id/button2"
+            android:layout_alignLeft="@android:id/button2"
+            android:layout_alignEnd="@android:id/button2"
+            android:layout_alignRight="@android:id/button2"
+            android:layout_toEndOf="@+id/titleText"
+            android:layout_toRightOf="@+id/titleText"
+            android:text="Change Title"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorButton" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/iconButton"
+            style="@style/Widget.MaterialComponents.ActionBar.Surface"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spacer1"
+            android:layout_alignStart="@android:id/button3"
+            android:layout_alignLeft="@android:id/button3"
+            android:layout_alignEnd="@android:id/button3"
+            android:layout_alignRight="@android:id/button3"
+            android:layout_toEndOf="@+id/titleButton"
+            android:layout_toRightOf="@+id/titleButton"
+            android:text="Change Icon"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:textColor="@color/colorButton" />
 
