@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.Rikr2MVcu'
 
 android {
     compileSdkVersion ANDROID_BUILD_SDK_VERSION as int
